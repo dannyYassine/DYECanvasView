@@ -13,7 +13,7 @@ class BrushLayer: CAShapeLayer {
         super.init()
         self.anchorPoint = CGPoint(x: 0.0, y: 0.0)
         self.strokeColor = UIColor.blackColor().CGColor
-        self.lineWidth = 5.0
+        self.lineWidth = 2.0
         self.bounds = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
         self.fillColor = UIColor.clearColor().CGColor
         self.lineCap = kCALineCapRound
@@ -26,26 +26,46 @@ class BrushLayer: CAShapeLayer {
     }
 }
 
+class DrawView: UIView {
+    
+    var drawPath: UIBezierPath!
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.drawPath = UIBezierPath()
+        self.drawPath = UIBezierPath()
+        self.drawPath.lineWidth = 2.0
+        self.drawPath.lineCapStyle = CGLineCap.Round
+        self.drawPath.lineJoinStyle = CGLineJoin.Round
+        UIColor.clearColor().setFill()
+        UIColor.blackColor().setStroke()
+        self.backgroundColor = UIColor.clearColor()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func drawRect(rect: CGRect) {
+        self.drawPath.stroke()
+    }
+}
+
 class CanvasView: UIView {
 
     var previousPoint: CGPoint!
-    var drawingView: UIView!
+    var drawingView: DrawView!
     var brush: Brush!
     var layers = [CAShapeLayer]()
     var undoLayers = [CAShapeLayer]()
-    var path: UIBezierPath!
     
     func commonInit() {
         
-        
         let pan = UIPanGestureRecognizer(target: self, action: "pan:")
-        self.addGestureRecognizer(pan)
-//        path = UIBezierPath()
-//        path.lineWidth = 5.0
-//        path.lineCapStyle = CGLineCap.Round
-//        path.lineJoinStyle = CGLineJoin.Round
-        UIColor.clearColor().setFill()
-        UIColor.blackColor().setStroke()
+        
+        self.drawingView = DrawView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
+        self.addSubview(self.drawingView)
+        self.drawingView.addGestureRecognizer(pan)
 
     }
     
@@ -59,38 +79,36 @@ class CanvasView: UIView {
         self.commonInit()
     }
     
-    override func drawRect(rect: CGRect) {
-//        self.path.stroke()
-    }
-    
     func pan(pan: UIPanGestureRecognizer) {
         
         let location: CGPoint = pan.locationInView(self)
         
         if pan.state == .Began {
-            self.drawingView = UIView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
-            self.addSubview(self.drawingView)
-            self.path = UIBezierPath()
+
         } else if pan.state == .Changed {
             
             
             if self.previousPoint == nil {
                 self.previousPoint = location
-                path.moveToPoint(location)
+                self.drawingView.drawPath.moveToPoint(location)
             }
             
             let middlePoint = self.getMidPoint(self.previousPoint, secondPoint: location)
-            path.addQuadCurveToPoint(middlePoint, controlPoint: self.previousPoint)
+            self.drawingView.drawPath.addQuadCurveToPoint(middlePoint, controlPoint: self.previousPoint)
             self.previousPoint = location
-            self.addNewLayer(path)
-
+//            self.addNewLayer(self.drawingView.drawPath)
+            
+            self.drawingView.setNeedsDisplay()
             
         } else if pan.state == .Ended {
             // add layers
             
-            self.extractDrawingToLayer(self.createNewLayer(path))
+            self.extractDrawingToLayer()
             self.previousPoint = nil
-            self.path = nil
+            
+            self.drawingView.drawPath = UIBezierPath()
+            self.drawingView.setNeedsDisplay()
+            
         }
         
         
@@ -102,30 +120,17 @@ class CanvasView: UIView {
     
     func addNewLayer(drawedPath: UIBezierPath) {
         
-        let newLayer = BrushLayer()
-        newLayer.path = drawedPath.CGPath
-        newLayer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
-        newLayer.strokeColor = UIColor.blackColor().CGColor
-        newLayer.lineWidth = 5.0
-        newLayer.fillColor = UIColor.clearColor().CGColor
-        newLayer.bounds = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
-        self.drawingView.layer.addSublayer(newLayer)
+//        let newLayer = BrushLayer()
+//        newLayer.path = drawedPath.CGPath
+//        newLayer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+//        newLayer.strokeColor = UIColor.blackColor().CGColor
+//        newLayer.lineWidth = 5.0
+//        newLayer.fillColor = UIColor.clearColor().CGColor
+//        newLayer.bounds = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
+//        self.drawingView.layer.addSublayer(newLayer)
     }
     
-    func createNewLayer(path: UIBezierPath) -> CAShapeLayer {
-        
-        let newLayer = BrushLayer()
-        newLayer.path = path.CGPath
-        newLayer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
-        newLayer.strokeColor = UIColor.blackColor().CGColor
-        newLayer.lineWidth = 5.0
-        newLayer.fillColor = UIColor.clearColor().CGColor
-        newLayer.bounds = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
-        
-        return newLayer
-    }
-    
-    func extractDrawingToLayer(SubLayer: CAShapeLayer) {
+    func extractDrawingToLayer() {
         
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.mainScreen().scale)
         self.drawingView.drawViewHierarchyInRect(self.drawingView.bounds, afterScreenUpdates: false)
@@ -135,15 +140,13 @@ class CanvasView: UIView {
         let layer = BrushLayer()
         layer.anchorPoint = CGPoint(x: 0.0, y: 0.0)
         layer.strokeColor = UIColor.blackColor().CGColor
-        layer.lineWidth = 5.0
+        layer.lineWidth = self.drawingView.drawPath.lineWidth
         layer.bounds = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
         layer.fillColor = UIColor.clearColor().CGColor
         layer.contents = newImage.CGImage
         self.layers.append(layer)
         self.layer.addSublayer(layer)
         
-        self.drawingView.removeFromSuperview()
-        self.drawingView = nil
     }
     
     func undo() {
