@@ -14,6 +14,10 @@
 		B5088AFE1BC859DB00D925BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5088AFC1BC859DB00D925BC /* LaunchScreen.storyboard */; };
 		B5088B091BC859DB00D925BC /* CanvasViewExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5088B081BC859DB00D925BC /* CanvasViewExampleTests.swift */; };
 		B5088B141BC859DB00D925BC /* CanvasViewExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5088B131BC859DB00D925BC /* CanvasViewExampleUITests.swift */; };
+		B5088B221BC859F200D925BC /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5088B211BC859F200D925BC /* Canvas.swift */; };
+		B5088B241BC85A6C00D925BC /* Brush.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5088B231BC85A6C00D925BC /* Brush.swift */; };
+		B5088B261BC8A4D900D925BC /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5088B251BC8A4D900D925BC /* CanvasView.swift */; };
+		B51663A71BC8C5D100695A1E /* CanvasView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B51663A61BC8C5D100695A1E /* CanvasView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		B5088B0F1BC859DB00D925BC /* CanvasViewExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasViewExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5088B131BC859DB00D925BC /* CanvasViewExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewExampleUITests.swift; sourceTree = "<group>"; };
 		B5088B151BC859DB00D925BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5088B211BC859F200D925BC /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
+		B5088B231BC85A6C00D925BC /* Brush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brush.swift; sourceTree = "<group>"; };
+		B5088B251BC8A4D900D925BC /* CanvasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		B51663A61BC8C5D100695A1E /* CanvasView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CanvasView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,10 @@
 			children = (
 				B5088AF31BC859DB00D925BC /* AppDelegate.swift */,
 				B5088AF51BC859DB00D925BC /* ViewController.swift */,
+				B5088B211BC859F200D925BC /* Canvas.swift */,
+				B5088B251BC8A4D900D925BC /* CanvasView.swift */,
+				B51663A61BC8C5D100695A1E /* CanvasView.xib */,
+				B5088B231BC85A6C00D925BC /* Brush.swift */,
 				B5088AF71BC859DB00D925BC /* Main.storyboard */,
 				B5088AFA1BC859DB00D925BC /* Assets.xcassets */,
 				B5088AFC1BC859DB00D925BC /* LaunchScreen.storyboard */,
@@ -231,6 +243,7 @@
 			files = (
 				B5088AFE1BC859DB00D925BC /* LaunchScreen.storyboard in Resources */,
 				B5088AFB1BC859DB00D925BC /* Assets.xcassets in Resources */,
+				B51663A71BC8C5D100695A1E /* CanvasView.xib in Resources */,
 				B5088AF91BC859DB00D925BC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,6 +271,9 @@
 			files = (
 				B5088AF61BC859DB00D925BC /* ViewController.swift in Sources */,
 				B5088AF41BC859DB00D925BC /* AppDelegate.swift in Sources */,
+				B5088B261BC8A4D900D925BC /* CanvasView.swift in Sources */,
+				B5088B241BC85A6C00D925BC /* Brush.swift in Sources */,
+				B5088B221BC859F200D925BC /* Canvas.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +414,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CanvasViewExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = DY.CanvasViewExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -409,6 +426,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CanvasViewExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = DY.CanvasViewExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -482,6 +500,7 @@
 				B5088B1A1BC859DB00D925BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B5088B1B1BC859DB00D925BC /* Build configuration list for PBXNativeTarget "CanvasViewExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +509,7 @@
 				B5088B1D1BC859DB00D925BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B5088B1E1BC859DB00D925BC /* Build configuration list for PBXNativeTarget "CanvasViewExampleUITests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +518,7 @@
 				B5088B201BC859DB00D925BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

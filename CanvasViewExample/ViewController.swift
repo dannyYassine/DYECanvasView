@@ -10,9 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet var canvasView: CanvasView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +24,12 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func unduButton(sender: UIButton) {
+        self.canvasView.undo()
+    }
 
+    @IBAction func redo(sender: UIButton) {
+        self.canvasView.redo()
+    }
 }
 
