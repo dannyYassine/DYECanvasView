@@ -23,6 +23,13 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func doneButtonPressed(sender: UIButton) {
+        let image = self.canvasView.extractDrawing()
+        let imageView = UIImageView(frame: CGRect(x: 50.0, y: 50.0, width: self.view.frame.width - 100.0, height: self.view.frame.height - 100.0))
+        imageView.image = image
+        self.view.addSubview(imageView)
+    }
 
     @IBAction func unduButton(sender: UIButton) {
         self.canvasView.undo()
