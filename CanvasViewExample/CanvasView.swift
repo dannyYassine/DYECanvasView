@@ -105,15 +105,14 @@ class CanvasView: UIImageView {
     func pan(pan: UIPanGestureRecognizer) {
         
         let location: CGPoint = pan.locationInView(self)
-        let velocity: CGPoint = pan.velocityInView(self)
+//        let velocity: CGPoint = pan.velocityInView(self)
         
         if pan.state == .Began {
-
+            self.drawingView.drawPath.moveToPoint(location)
         } else if pan.state == .Changed {
             
             if self.previousPoint == nil {
                 self.previousPoint = location
-                self.drawingView.drawPath.moveToPoint(location)
             }
             
             let middlePoint = self.getMidPoint(self.previousPoint, secondPoint: location)
