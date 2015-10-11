@@ -6,6 +6,9 @@ Add a DYECanvasView as a subview in a Storyboard or programmatically then draw a
 
 # Undos and Redos
 Just call the methods to redo and undo!
-
-  self.canvasView.undo()
-  self.canvasView.redo()
+    
+    // Undo drawed layers
+    self.canvasView.undo()
+    
+    // Redo the layers that were removed
+    self.canvasView.redo()
