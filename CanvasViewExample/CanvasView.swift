@@ -42,7 +42,7 @@ class DrawView: UIView {
 
     func setBezierPath() {
         self.drawPath = UIBezierPath()
-        self.drawPath.lineWidth = 2.0
+        self.drawPath.lineWidth = 5.0
         self.drawPath.lineCapStyle = CGLineCap.Round
         self.drawPath.lineJoinStyle = CGLineJoin.Round
         UIColor.clearColor().setFill()
@@ -104,7 +104,7 @@ class CanvasView: UIImageView {
         
         let location: CGPoint = pan.locationInView(self)
         let velocity: CGPoint = pan.velocityInView(self)
-                
+        
         if pan.state == .Began {
 
         } else if pan.state == .Changed {
