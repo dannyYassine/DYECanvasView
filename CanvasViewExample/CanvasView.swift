@@ -38,6 +38,7 @@ class DrawView: UIView {
         
         self.backgroundColor = UIColor.clearColor()
         self.setBezierPath()
+        
     }
 
     func setBezierPath() {
