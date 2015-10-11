@@ -10,9 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet var canvasView: CanvasView!
+    var canvasView: CanvasView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.canvasView = CanvasView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        self.view.addSubview(self.canvasView)
+        
         // Do any additional setup after loading the view, typically from a nib.
         let doubleTap = UITapGestureRecognizer(target: self, action: "undoButton")
         doubleTap.numberOfTapsRequired = 2

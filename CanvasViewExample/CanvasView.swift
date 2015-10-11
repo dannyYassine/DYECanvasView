@@ -85,8 +85,9 @@ class CanvasView: UIImageView {
         
         self.drawingView = DrawView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
         self.addSubview(self.drawingView)
-        self.drawingView.addGestureRecognizer(pan)
-
+        self.addGestureRecognizer(pan)
+        
+        self.userInteractionEnabled = true
     }
     
     override init(frame: CGRect) {
