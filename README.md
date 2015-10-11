@@ -1,3 +1,5 @@
 # DYECanvasView
 
-Add the a DYECanvasView as a subview then draw away!
+Add a DYECanvasView as a subview in a Storyboard or programmatically then draw away!
+
+![]()
