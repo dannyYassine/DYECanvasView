@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9058" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yeu-0Z-Cnf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9058" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9048"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -40,70 +39,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFc-A1-Fl8">
-                                <rect key="frame" x="21" y="562" width="44" height="30"/>
-                                <state key="normal" title="UNDO"/>
-                                <connections>
-                                    <action selector="unduButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CKF-zc-dSg"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ufu-fi-uRP">
-                                <rect key="frame" x="550" y="560" width="46" height="30"/>
-                                <state key="normal" title="REDO"/>
-                                <connections>
-                                    <action selector="redo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3tU-cp-btb"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="iFc-A1-Fl8" secondAttribute="bottom" constant="8" id="1kL-Xs-Eaa"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="xfJ-Ix-aTH" secondAttribute="bottom" id="37L-Lf-ssl"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ufu-fi-uRP" secondAttribute="bottom" constant="10" id="M0L-FZ-iH7"/>
                             <constraint firstItem="xfJ-Ix-aTH" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="NWI-E9-KOh"/>
                             <constraint firstAttribute="trailing" secondItem="xfJ-Ix-aTH" secondAttribute="trailing" id="Pe4-cC-3ip"/>
-                            <constraint firstItem="iFc-A1-Fl8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="1" id="QRm-c7-6DW"/>
-                            <constraint firstAttribute="trailing" secondItem="Ufu-fi-uRP" secondAttribute="trailing" constant="4" id="dGE-ZO-WEm"/>
                             <constraint firstItem="xfJ-Ix-aTH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lfT-SA-JdO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="cXJ-m8-U8w">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="9Kb-xc-UWa">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6Tg-Hj-oSa">
-                                <rect key="frame" x="447" y="7" width="133" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="doneButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Y4U-hJ-Tr4"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
-                        <outlet property="canvasView" destination="xfJ-Ix-aTH" id="dUu-LA-KaS"/>
+                        <outlet property="canvasView" destination="xfJ-Ix-aTH" id="TkS-RJ-VW0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1057" y="224"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="aUF-Pd-W6i">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yeu-0Z-Cnf" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pis-sX-1OZ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="2GY-43-huB"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P8C-ke-aEs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="199" y="884"/>
         </scene>
     </scenes>
 </document>

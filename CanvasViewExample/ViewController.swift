@@ -14,8 +14,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let doubleTap = UITapGestureRecognizer(target: self, action: "undoButton")
+        doubleTap.numberOfTapsRequired = 2
+
+        let longPress = UILongPressGestureRecognizer(target: self, action: "redo")
+        longPress.minimumPressDuration = 0.5
         
-        
+        self.view.addGestureRecognizer(doubleTap)
+        self.view.addGestureRecognizer(longPress)
         
     }
 
@@ -26,16 +32,14 @@ class ViewController: UIViewController {
     
     @IBAction func doneButtonPressed(sender: UIButton) {
         let image = self.canvasView.extractDrawing()
-        let imageView = UIImageView(frame: CGRect(x: 50.0, y: 50.0, width: self.view.frame.width - 100.0, height: self.view.frame.height - 100.0))
-        imageView.image = image
-        self.view.addSubview(imageView)
+        self.canvasView.previousView.image = image
     }
 
-    @IBAction func unduButton(sender: UIButton) {
+    func undoButton() {
         self.canvasView.undo()
     }
 
-    @IBAction func redo(sender: UIButton) {
+    func redo() {
         self.canvasView.redo()
     }
 }

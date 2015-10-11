@@ -32,6 +32,7 @@ class BrushLayer: CAShapeLayer {
 class DrawView: UIView {
     
     var drawPath: UIBezierPath!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -56,6 +57,7 @@ class DrawView: UIView {
     //MARK: Drawing
     
     override func drawRect(rect: CGRect) {
+        
         self.drawPath.stroke()
     }
 }
@@ -63,8 +65,8 @@ class DrawView: UIView {
 class CanvasView: UIImageView {
 
     var previousPoint: CGPoint!
+    var previousView: UIImageView!
     var drawingView: DrawView!
-    var brush: Brush!
     var layers = [CAShapeLayer]()
     var undoLayers = [CAShapeLayer]()
     
@@ -74,11 +76,16 @@ class CanvasView: UIImageView {
         
         let pan = UIPanGestureRecognizer(target: self, action: "pan:")
         
-        self.drawingView = DrawView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
+        // If you want to present the previous drawed image
+        self.previousView = UIImageView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
+        self.previousView.contentMode = .ScaleAspectFit
+        self.addSubview(self.previousView)
+        self.previousView.alpha = 0.4
+        
+        self.drawingView = DrawView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height))
         self.addSubview(self.drawingView)
         self.drawingView.addGestureRecognizer(pan)
-        
-        self.image = UIImage(named: "image.png")
+
     }
     
     override init(frame: CGRect) {
@@ -96,7 +103,8 @@ class CanvasView: UIImageView {
     func pan(pan: UIPanGestureRecognizer) {
         
         let location: CGPoint = pan.locationInView(self)
-        
+        let velocity: CGPoint = pan.velocityInView(self)
+                
         if pan.state == .Began {
 
         } else if pan.state == .Changed {
@@ -158,6 +166,7 @@ class CanvasView: UIImageView {
         let layer = self.layers.removeAtIndex(self.layers.count - 1)
         self.undoLayers.append(layer)
         layer.removeFromSuperlayer()
+        
     }
     
     func redo() {
